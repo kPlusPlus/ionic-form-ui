@@ -27,6 +27,7 @@ export class LoginPage implements OnInit {
     var useremail = $("[name='useremail']").val();
     var userpsw = $("[name='userpsw']").val();
     alert(userpsw);
+    $("#userid").val(555);
 
     $.ajax({
       url: serverurl + 'cmemb.php',
