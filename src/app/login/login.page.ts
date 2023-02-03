@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-declare var $: any;
+declare let $: any;
 
 
 @Component({
@@ -12,7 +12,7 @@ export class LoginPage implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    var ime = "kreso";
+    const ime = 'kreso';
 
     /*
     $(document).ready(function () {
@@ -23,34 +23,32 @@ export class LoginPage implements OnInit {
 
   btnClicked() {
     //console.log("just clicked meeee");
-    var serverurl = "http://kplusplus.ddns.net:8080/";
-    var useremail = $("[name='useremail']").val();
-    var userpsw = $("[name='userpsw']").val();
+    let serverurl = 'http://kplusplus.ddns.net:8080/';
+    let useremail = $('[name=\'useremail\']').val();
+    let userpsw = $('[name=\'userpsw\']').val();
     alert(userpsw);
-    $("#userid").val(555);
+    $('#userid').val(555);
 
     $.ajax({
       url: serverurl + 'cmemb.php',
-      data: { "useremail": useremail, "userpsw": userpsw },              // $('#formA').serialize(),
-      type: "POST",
-      success: function (data) {
-          if (data === 'no user') {
-              alert("no user with this login");
-              return false;
-          }
-          var USRID = data;
-          //$("#userid").val(USRID).trigger('create');          // print user id on form with GPS
-          $("#userid").val(USRID);
-          alert(USRID);
+      data: { useremail, userpsw },              // $('#formA').serialize(),
+      type: 'POST',
+      success(data) {
+        if (data === 'no user') {
+          alert('no user with this login');
+          return false;
+        }
+        const USRID = data;
+        //$("#userid").val(USRID).trigger('create');          // print user id on form with GPS
+        $('#userid').val(USRID);
+        alert(USRID);
+        return true;
       },
-      fail: function (data) {
-          alert('Err 16. Internet connection problem');
+      fail(data) {
+        alert('Err 16. Internet connection problem');
       }
-  }
-  );
-
-
-
+    }
+    );
 
   }
 
