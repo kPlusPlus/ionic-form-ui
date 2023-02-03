@@ -18,11 +18,24 @@
     </ion-item>
     <ion-row>
       <ion-col>
-        <ion-button type="submit" color="danger" expand="block">Sign In</ion-button>
+        <ion-button type="submit" color="danger" expand="block"
+          >Sign In</ion-button
+        >
         <ion-button (click)="btnClicked()">Click me !</ion-button>
-        <a [routerLink]="['/forgot-password']" class="small-text">Forgot Password?</a>
+        <a [routerLink]="['/forgot-password']" class="small-text"
+          >Forgot Password?</a
+        >
         <ion-input type="text" id="userid" name="userid">123456890</ion-input>
       </ion-col>
     </ion-row>
+
+    <script>
+      const inline = 1;
+      function onlyheroes() {
+        alert("only heroes");
+      }
+    </script>
+    <input type="button" value="Login 123" onclick="onlyheroes();" />
+
   </form>
 </ion-content>
