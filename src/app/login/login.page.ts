@@ -1,6 +1,8 @@
 /* eslint-disable prefer-arrow/prefer-arrow-functions */
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+//import { RequestOptions } from 'http';
+import { HttpHeaders } from '@angular/common/http';
 declare let $: any;
 
 
@@ -11,7 +13,7 @@ declare let $: any;
 })
 export class LoginPage implements OnInit {
 
-  constructor() { }
+  constructor(public httpClient: HttpClient) { }
 
   ngOnInit() {
     const ime = 'kreso';
@@ -29,6 +31,11 @@ export class LoginPage implements OnInit {
   userid = '';
   //http: HttpClient;
 
+
+  getFilms() {
+    return this.httpClient.get('https://swapi.co/api/films');
+  }
+
   btnClicked() {
 
     //this.useremail = $('[name=\'useremail\']').val();
@@ -36,9 +43,21 @@ export class LoginPage implements OnInit {
 
     alert(this.userpsw);
     alert(this.userid);
+    //this.userid =  this.httpClient.post(this.serverurl + 'cmemb.php' )
 
 
-    //$http.post('/someUrl', data, config).then(successCallback, errorCallback);
+    const body = { user: this.useremail, password: this.userpsw };
+
+
+    //HttpClient.post(this.serverurl + 'cmemb.php' );
+    const data = 'user=' + this.useremail + '&password=' + this.userpsw;
+
+    const headers = new HttpHeaders();
+    headers.append('Accept', 'application/json');
+    headers.append('Content-Type', 'application/json' );
+
+    this.httpClient.post(this.serverurl + 'cmemb.php', data, { headers });
+
 
     //$('#userid').val(555);
     /*
