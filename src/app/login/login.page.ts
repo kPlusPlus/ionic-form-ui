@@ -23,7 +23,7 @@ export class LoginPage implements OnInit {
   private useremail = '';
   private userpsw = '';
   private userid = '';
-  private res = "";
+  private res: any;
 
   constructor(public httpClient: HttpClient) { }
 
@@ -39,8 +39,6 @@ export class LoginPage implements OnInit {
       .pipe(map(res => res));
   }
 
-
-
   getFilms() {
     return this.httpClient.get('https://swapi.co/api/films');
   }
@@ -54,57 +52,42 @@ export class LoginPage implements OnInit {
     const body = { useremail: this.useremail, userpsw: this.userpsw };
 
     //HttpClient.post(this.serverurl + 'cmemb.php' );
-    const data = 'user=' + this.useremail + '&password=' + this.userpsw;
+    const data = 'useremail=' + this.useremail + '&userpsw=' + this.userpsw;
 
     const headers = new HttpHeaders();
     headers.append('Accept', 'application/json');
     headers.append('Content-Type', 'application/json');
 
-    this.httpClient.post(this.serverurl + 'cmemb.php', data, { headers }).subscribe(datas => data);
-
-    console.log(this.serverurl + 'cmemb.php');
-    console.log(headers);
-
-
-    this.httpClient.get('https://randomuser.me/api/?results=10')
-      .pipe(map(res => this.res));
-    console.log('******************************');
-    console.log(this.res);
-/*
-    this.httpClient.get('https://randomuser.me/api/?results=10')
-      .map(res => res.json())
-      .subscribe(res => {
-        this.userid = res.results;
-      }, (err) => {
-        alert("failed loading json data");
-      });
-*/
-
-    //$('#userid').val(555);
     /*
-        $.ajax({
-          url: serverurl + 'cmemb.php',
-          data: { this.useremail, this.userpsw },              // $('#formA').serialize(),
-          type: 'POST',
-          // eslint-disable-next-line prefer-arrow/prefer-arrow-functions
-          success(data) {
-            if (data === 'no user') {
-              alert('no user with this login');
-              return false;
-            }
-            const USRID = data;
-            //$("#userid").val(USRID).trigger('create');          // print user id on form with GPS
-            $('#userid').val(USRID);
-            alert(USRID);
-            return true;
-          },
-          fail(data) {
-            alert('Err 16. Internet connection problem');
-          }
-        });
-
-      }
+    this.httpClient.post(this.serverurl + 'cmemb.php', data, { headers }).subscribe(datas => data);
     */
+
+
+    // ovo radi
+    /*
+          this.httpClient.post<any>('https://reqres.in/api/posts', { title: 'Angular POST Request Example' }).subscribe(data => {
+              this.userid = data.id;
+          });
+    */
+
+    this.httpClient.post<any>(this.serverurl + 'cmemb.php?useremail='+ this.useremail +'&userpsw='+this.userpsw,
+    {useremail:this.useremail,userpsw:this.userpsw }).subscribe(datas => {
+      this.userid = datas.ID;
+      console.log(datas);
+    });
+
+
+    /*
+        this.httpClient.get('https://randomuser.me/api/?results=10')
+          .map(res => res.json())
+          .subscribe(res => {
+            this.userid = res.results;
+          }, (err) => {
+            alert("failed loading json data");
+          });
+    */
+
+
   }
 }
 

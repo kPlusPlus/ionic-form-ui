@@ -9,3 +9,7 @@ header("Access-Control-Allow-Methods: GET, POST, PUT, PATCH, POST, DELETE, OPTIO
 header('Access-Control-Max-Age: 86400');
 header("Access-Control-Expose-Headers: Content-Length, X-JSON");
 header("Access-Control-Allow-Headers: *");
+
+
+
+http://ubuntu:8080/cmemb.php?useremail=kresimir.ivkovic@gmail.com&userpsw=123456;

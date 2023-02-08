@@ -9,9 +9,4 @@ export class HomePage {
 
   constructor() {}
 
-  btnClicked() {
-    console.log("just clicked meeee");
-    alert("Clicked");
-  }
-
 }
